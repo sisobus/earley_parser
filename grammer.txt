@@ -1,0 +1,31 @@
+S -> NP VP NP
+S -> NP VP
+VP -> VP NP PP
+VP -> VP PP
+NP -> DT NP
+PP -> P NP
+VP -> v
+NP -> n
+P -> p
+DT -> det
+
+n -> man
+n -> boy
+n -> telescope
+n -> saw
+n -> time
+n -> flies
+n -> arrow
+n -> park
+v -> boy
+v -> saw
+v -> time
+v -> flies
+v -> man
+v -> like
+p -> like
+p -> with
+p -> in
+det -> an
+det -> a
+det -> the

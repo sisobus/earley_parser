@@ -1,4 +1,4 @@
 all:
-	g++ -std=c++11 a.cc -o run
+	g++ a.cpp -o run
 clean:
 	rm run
