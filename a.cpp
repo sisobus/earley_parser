@@ -1,5 +1,5 @@
 #include "utils.h"
-#define DEBUG
+//#define DEBUG
 int main(int argc,char *argv[]) {
     Printer printer;
     Option  option;
@@ -58,9 +58,17 @@ int main(int argc,char *argv[]) {
          */
         while ( !pendingChart.empty() ) {
             State *curState = pendingChart.front();pendingChart.pop_front();
+            curState->printState(curWords);
 #ifdef DEBUG
             printer.print("\n$$ cur state print $$");
             curState->printState(curWords);
+            if ( curState->parent ) curState->parent->printState(curWords);
+            /*
+            printer.print(" ## cur pending chart ##");
+            printPendingChart(pendingChart,curWords);
+            printer.print(" ## cur complete chart ##");
+            printCompleteChart(completeChart,curWords);
+            */
 #endif
             if ( isCompleteState(curState) ) {
                 /*
@@ -98,7 +106,6 @@ int main(int argc,char *argv[]) {
                             pendingChart.push_back(new State(curState->start,completeChart[i]->end,
                                         curState->constituent,nextFound,nextNext,
                                         completeChart[i]));
-                            completeChart.push_back(new State(curState));
                         }
                     }
                 }
@@ -114,16 +121,28 @@ int main(int argc,char *argv[]) {
                             pendingChart.push_back(new State(curState->start,pendingChart[i]->end,
                                         curState->constituent,nextFound,nextNext,
                                         pendingChart[i]));
-                            completeChart.push_back(new State(curState));
                         }
                     }
                 }
-                if ( !foundSuccess ) {
+                if ( foundSuccess ) {
+                    completeChart.push_back(new State(curState));
+                } else if ( !foundSuccess ) {
                     rhs = grammer.findRhsUsingLhs(curState->next[0]);
                     for ( int i = 0 ; i < (int)rhs.size() ; i++ ) 
                         pendingChart.push_back(new State(curState->end,curState->end,
                                     curState->next[0],Words(),rhs[i],curState));
                     completeChart.push_back(new State(curState));
+                }
+            }
+        }
+        /*
+         * answer print
+         */
+        for ( int i = 0 ; i < (int)completeChart.size() ; i++ ) {
+            if ( isCompleteState(completeChart[i]) ) {
+                if ( completeChart[i]->start == 0 && completeChart[i]->end == (int)curWords.size() 
+                        && completeChart[i]->constituent == "S" ) {
+                    completeChart[i]->printState(curWords);
                 }
             }
         }

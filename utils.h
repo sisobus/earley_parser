@@ -223,3 +223,13 @@ bool isCompleteState(State* state) {
 bool isActiveState(State* state) {
     return !isCompleteState(state);
 }
+void printPendingChart(deque<State*>& pendingChart,Words words) {
+    for ( int i = 0 ; i < (int)pendingChart.size() ; i++ ) {
+        pendingChart[i]->printState(words);
+    }
+}
+void printCompleteChart(vector<State*>& completeChart,Words words) {
+    for ( int i = 0 ; i < (int)completeChart.size() ; i++ ) {
+        completeChart[i]->printState(words);
+    }
+}
