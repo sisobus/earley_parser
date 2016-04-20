@@ -20,7 +20,7 @@ using namespace std;
 
 typedef unsigned int uint;
 typedef pair<string,vector<string> > svs;
-typedef vector<string> ParsedString;
+typedef vector<string> Words;
 
 struct Printer {
     void print(string message) {
@@ -127,30 +127,30 @@ Grammer initGrammer(string grammerFilename) {
     fclose(fp);
     return grammer;
 }
-ParsedString parseString(char *s) {
-    ParsedString ret;
+Words parseString(char *s) {
+    Words ret;
     for ( char *p = strtok(s," \t") ; p ; p=strtok(NULL," \t" ) )
         ret.push_back(string(p));
     return ret;
 }
-vector<ParsedString> initInputString(string inputFilename) {
+vector<Words> initInputString(string inputFilename) {
     FILE *fp = fopen(inputFilename.c_str(),"r");
-    vector<ParsedString> ret;
+    vector<Words> ret;
     for ( char buf[1024] ; ~fscanf(fp,"%[^\n]\n",buf) ; ) {
         for ( int i = 0 ; buf[i] ; i++ ) 
             if ( buf[i] == '.' ) buf[i] = 0;
-        ParsedString cur = parseString(buf);
+        Words cur = parseString(buf);
         ret.push_back(cur);
     }
     fclose(fp);
     return ret;
 }
-void printParsedInputString(FILE* fp,ParsedString& parsedInputString) {
+void printParsedInputString(FILE* fp,Words& parsedInputString) {
     for ( int i = 0 ; i < (int)parsedInputString.size() ; i++ ) 
         fprintf(fp,"%s ",parsedInputString[i].c_str());
     fprintf(fp,"\n");
 }
-string getOriginalString(ParsedString parsedString) {
+string getOriginalString(Words parsedString) {
     string ret = "";
     for ( int i = 0 ; i < (int)parsedString.size() ; i++ ) 
         ret = ret + parsedString[i] + " ";

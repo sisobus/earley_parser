@@ -4,11 +4,11 @@ int main(int argc,char *argv[]) {
     Printer printer;
     Option  option;
     Grammer grammer;
-    vector<ParsedString> parsedStrings;
+    vector<Words> words;
 
     option.getOption(argc,argv);
     grammer = initGrammer(option.grammerFilename);
-    parsedStrings = initInputString(option.inputFilename);
+    words = initInputString(option.inputFilename);
 
 #ifdef DEBUG
     grammer.printG();
@@ -16,11 +16,11 @@ int main(int argc,char *argv[]) {
     /*
      * psi = parsed string index
      */
-    for ( int psi = 0 ; psi < (int)parsedStrings.size() ; psi++ ) {
-        ParsedString    curParsedString = parsedStrings[psi];
-        string          curOriginalString = getOriginalString(curParsedString);
+    for ( int psi = 0 ; psi < (int)words.size() ; psi++ ) {
+        Words           curWords = words[psi];
+        string          curOriginalString = getOriginalString(curWords);
 #ifdef DEBUG
-        printParsedInputString(stdout,curParsedString);
+        printParsedInputString(stdout,curWords);
         printer.print("current original string :",curOriginalString);
 #endif
     }
