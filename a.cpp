@@ -63,16 +63,20 @@ int main(int argc,char *argv[]) {
             printer.print("\n$$ cur state print $$");
             curState->printState(curWords);
             if ( curState->parent ) curState->parent->printState(curWords);
-            /*
-            printer.print(" ## cur pending chart ##");
-            printPendingChart(pendingChart,curWords);
-            printer.print(" ## cur complete chart ##");
-            printCompleteChart(completeChart,curWords);
-            */
 #endif
             if ( isCompleteState(curState) ) {
                 /*
                  * process 1
+                 *
+                 * Take a pending edge e1, [i,j,p1,[c1,...,cn],[u1,...,um]] from PC
+                 * if [u1,...,um] is empty, i.e., the edge e1 is a complete edge
+                 * then do the process 1(e1)
+                 *
+                 * process1(e1): where e1 = [i,j,p1,[c1,...,cn],[]] a complete edge
+                 * for each active edge of the form [k,i,x,[w1,...,wn],[p1,p2,...,pn]],
+                 *      generate a new pending edge [k,j,x,[w1,...,wn,p1],[p2,...,pn]]
+                 * put e1 as a completed edge
+                 *
                  */
                 for ( int i = 0 ; i < (int)completeChart.size() ; i++ ) {
                     if ( isActiveState(completeChart[i]) ) {
@@ -92,6 +96,19 @@ int main(int argc,char *argv[]) {
             } else if ( isActiveState(curState) ) {
                 /*
                  * process 2
+                 *
+                 * Take a pending edge e1, [i,j,p1,[c1,...,cn],[u1,...,um]] from PC
+                 * if [u1,...,um] is empty, i.e., the edge e1 is not a complete edge
+                 * check if there is any edges of the form, [j,_,u1,_,_] in either chart
+                 *
+                 * if there is (i.e., the constituent u1 had aleady been or to be tried)
+                 *      if there is any completed edge e2, [j,k,u1,[_],[]] do process2(e1,e2)
+                 *      put e1 as an active edge (wait to see if there is any pending edge for e1)
+                 *
+                 * process2(e1,e2):
+                 *      e1 = [i,j,p1,[c1,...,cn],[u1,...,um]] and e2 = [j,k,u1,[_],[]],
+                 *      generate a pending edge [i,k,p1,[c1,...,cn,u1],[u2,...,um]
+                 * 
                  */
                 bool foundSuccess = false;
                 for ( int i = 0 ; i < (int)completeChart.size() ; i++ ) {
@@ -124,6 +141,15 @@ int main(int argc,char *argv[]) {
                         }
                     }
                 }
+                /*
+                 * if there is any edges of the form [j,_,u1,_,_] in either chart
+                 * put e1 as an active edge
+                 *
+                 * otherwise, take all grammer rules with LHS as u1, (i.e., u1->x1+x2+...+xn)
+                 * for each rule,
+                 *      generate edges [j,j,u1,[],[x1,x2,...,xn]] into pending chart and 
+                 *      put e1 as an active edge.
+                 */
                 if ( foundSuccess ) {
                     completeChart.push_back(new State(curState));
                 } else if ( !foundSuccess ) {
