@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <cassert>
 #include <map>
+#include <deque>
 #include <set>
 using namespace std;
 
@@ -19,8 +20,8 @@ using namespace std;
 #define     MESSAGE_HELP                "help> ./run -g grammer_filename(default: grammer.txt) -f input_string_filename(default: input.txt) "
 
 typedef unsigned int uint;
-typedef pair<string,vector<string> > svs;
-typedef vector<string> Words;
+typedef pair<string,deque<string> > svs;
+typedef deque<string> Words;
 
 struct Printer {
     void print(string message) {
@@ -43,6 +44,21 @@ struct Printer {
     }
     void print(string message,char *s) {
         printf("%s %s\n",message.c_str(),s);
+    }
+    void print(string message,deque<string> vs) {
+        printf("%s\n",message.c_str());
+        for ( int i = 0 ; i < (int)vs.size() ; i++ ) 
+            printf("%s ",vs[i].c_str());
+        puts("");
+    }
+    void print(string message,vector<deque<string> > vvs) {
+        printf("%s\n",message.c_str());
+        for ( int i = 0 ; i < (int)vvs.size() ; i++ ) {
+            printf("%d: ",i);
+            for ( int j = 0 ; j < (int)vvs[i].size() ; j++ ) 
+                printf("%s ",vvs[i][j].c_str());
+            puts("");
+        }
     }
 };
 struct Option {
@@ -80,15 +96,15 @@ struct Option {
  * grammer parsing
  */
 struct Grammer { 
-    multimap<string,vector<string> > g;
-    multimap<vector<string>,string> bg;
+    multimap<string,deque<string> > g;
+    multimap<deque<string>,string> bg;
     Grammer() {}
     void insert(svs curGrammer) {
         g.insert(curGrammer);
-        bg.insert(pair<vector<string>, string>(curGrammer.second,curGrammer.first));
+        bg.insert(pair<deque<string>, string>(curGrammer.second,curGrammer.first));
     }
     void printG() {
-        for ( map<string,vector<string> >::iterator it=g.begin();it!=g.end();it++ ) {
+        for ( map<string,deque<string> >::iterator it=g.begin();it!=g.end();it++ ) {
             fprintf(stdout,"%s -> ",it->first.c_str());
             for ( int i = 0 ; i < (int)it->second.size() ; i++ ) {
                 fprintf(stdout,"%s ",it->second[i].c_str());
@@ -97,16 +113,30 @@ struct Grammer {
         }
     }
     void printBg() {
-        for ( multimap<vector<string>,string>::iterator it=bg.begin();it!=bg.end();it++ ) {
+        for ( multimap<deque<string>,string>::iterator it=bg.begin();it!=bg.end();it++ ) {
             for ( int i = 0 ; i < (int)it->first.size() ; i++ ) 
                 fprintf(stdout,"%s ",it->first[i].c_str());
             fprintf(stdout,"-> ");
             fprintf(stdout,"%s\n",it->second.c_str());
         }
     }
+    vector<deque<string> > findRhsUsingLhs(string lhs) {
+        vector<deque<string> > ret;
+        pair<multimap<string,deque<string> >::iterator,multimap<string,deque<string> >::iterator> foundGrammer = g.equal_range(lhs);
+        for ( multimap<string,deque<string> >::iterator it=foundGrammer.first;it!=foundGrammer.second;it++ ) 
+            ret.push_back(it->second);
+        return ret;
+    }
+    deque<string> findLhsUsingRhs(Words rhs) {
+        deque<string> ret;
+        pair<multimap<deque<string>,string>::iterator,multimap<deque<string>,string>::iterator> foundGrammer = bg.equal_range(rhs);
+        for ( multimap<deque<string>,string>::iterator it=foundGrammer.first;it!=foundGrammer.second;it++ ) 
+            ret.push_back(it->second);
+        return ret;
+    }
 };
 svs parseGrammer(char *s) {
-    vector<string> vs;
+    deque<string> vs;
     for ( char *p = strtok(s," \t") ; p ; p=strtok(NULL," \t") ) {
         if ( string(p) == "->" ) continue;
         vs.push_back(string(p));
@@ -157,6 +187,39 @@ string getOriginalString(Words parsedString) {
     return ret;
 }
 struct State {
-    int le;
-    int ri;
+    int start;
+    int end;
+    string constituent;
+    Words found;
+    Words next;
+    State *parent;
+    State(){}
+    State(State* state):
+        start (state->start), end (state->end), constituent (state->constituent), found (state->found), next (state->next), parent (state->parent) {}
+    State(int _start,int _end,string _constituent,Words _found,Words _next):
+        start (_start), end (_end), constituent (_constituent), found (_found), next (_next), parent (NULL){}
+    State(int _start,int _end,string _constituent,Words _found,Words _next,State *_parent):
+        start (_start), end (_end), constituent (_constituent), found (_found), next (_next), parent (_parent){}
+    void printState(Words words) {
+        for ( int i = 0 ; i < (int)words.size() ; i++ ) {
+            if ( i == end ) printf("+ ");
+            printf("%s ",words[i].c_str());
+        }
+        printf("%s\n",end==(int)words.size()?"+":"");
+        printf("[");
+        printf("%d, %d, [%s], [",start,end,constituent.c_str());
+        for ( int i = 0 ; i < (int)found.size() ; i++ ) 
+            printf("%s%s",i==0?"":" ",found[i].c_str());
+        printf("], [");
+        for ( int i = 0 ; i < (int)next.size() ; i++ ) 
+            printf("%s%s",i==0?"":" ",next[i].c_str());
+        printf("] ");
+        printf("]\n");
+    }
 };
+bool isCompleteState(State* state) {
+    return state->next.empty();
+}
+bool isActiveState(State* state) {
+    return !isCompleteState(state);
+}
