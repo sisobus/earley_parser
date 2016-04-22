@@ -1,5 +1,4 @@
 #include "utils.h"
-//#define DEBUG
 int main(int argc,char *argv[]) {
     Printer printer;
     Option  option;
@@ -10,21 +9,13 @@ int main(int argc,char *argv[]) {
     grammer     = initGrammer(option.grammerFilename);
     sentences   = initInputString(option.inputFilename);
 
-#ifdef DEBUG
-    printer.print("\n$$ grammer print $$");
-    grammer.printG();
-#endif
     /*
-     * psi = parsed string index
+     * psi = input parsed string index
      */
     for ( int psi = 0 ; psi < (int)sentences.size() ; psi++ ) {
         Words           curWords = sentences[psi];
         string          curOriginalString = getOriginalString(curWords);
-#ifdef DEBUG
-        printer.print("\n$$ parsed input string print $$");
-        printParsedInputString(stdout,curWords);
-        printer.print("",curOriginalString);
-#endif
+
         deque<State *> pendingChart;
         vector<State *> completeChart;
 
@@ -32,7 +23,7 @@ int main(int argc,char *argv[]) {
         vector<Words> rhs;
 
         /*
-         * The parser put an initial edge, [0,0,s,[],[NP,VP]] into the PC
+         * The parser put an initial edge, [0,0,s,[],[_]] into the PC
          */
         rhs = grammer.findRhsUsingLhs("S");
         for ( int i = 0 ; i < (int)rhs.size() ; i++ ) 
@@ -47,11 +38,6 @@ int main(int argc,char *argv[]) {
             for ( int j = 0 ; j < (int)lhs.size() ; j++ ) 
                 completeChart.push_back(new State(i,i+1,lhs[j],tmp,Words()));
         }
-#ifdef DEBUG
-        printer.print("\n$$ initial complete chart print $$");
-        for ( int i = 0 ; i < (int)completeChart.size() ; i++ ) 
-            completeChart[i]->printState(curWords);
-#endif
 
         /*
          * Recursively do the following until there is no pending edges in PC
@@ -59,11 +45,7 @@ int main(int argc,char *argv[]) {
         while ( !pendingChart.empty() ) {
             State *curState = pendingChart.front();pendingChart.pop_front();
             curState->printState(curWords);
-#ifdef DEBUG
-            printer.print("\n$$ cur state print $$");
-            curState->printState(curWords);
-            if ( curState->parent ) curState->parent->printState(curWords);
-#endif
+
             if ( isCompleteState(curState) ) {
                 /*
                  * process 1
