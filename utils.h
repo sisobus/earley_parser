@@ -192,14 +192,14 @@ struct State {
     string constituent;
     Words found;
     Words next;
-    State *parent;
+    vector<State*> child;
     State(){}
     State(State* state):
-        start (state->start), end (state->end), constituent (state->constituent), found (state->found), next (state->next), parent (state->parent) {}
+        start (state->start), end (state->end), constituent (state->constituent), found (state->found), next (state->next), child (state->child) {}
     State(int _start,int _end,string _constituent,Words _found,Words _next):
-        start (_start), end (_end), constituent (_constituent), found (_found), next (_next), parent (NULL){}
-    State(int _start,int _end,string _constituent,Words _found,Words _next,State *_parent):
-        start (_start), end (_end), constituent (_constituent), found (_found), next (_next), parent (_parent){}
+        start (_start), end (_end), constituent (_constituent), found (_found), next (_next), child (vector<State*>()){}
+    State(int _start,int _end,string _constituent,Words _found,Words _next,vector<State *> _child):
+        start (_start), end (_end), constituent (_constituent), found (_found), next (_next), child (_child){}
     void printState(Words words) {
         for ( int i = 0 ; i < (int)words.size() ; i++ ) {
             if ( i == end ) printf("+ ");
@@ -232,4 +232,17 @@ void printCompleteChart(vector<State*>& completeChart,Words words) {
     for ( int i = 0 ; i < (int)completeChart.size() ; i++ ) {
         completeChart[i]->printState(words);
     }
+}
+void _printParseTree(State* curNode,Words& words) {
+    printf("(%s %s",curNode->constituent.c_str(),curNode->child.empty()?curNode->found[0].c_str():"");
+    for ( int i = 0 ; i < (int)curNode->child.size() ; i++ ) {
+        _printParseTree(curNode->child[i],words);
+    }
+    printf(")");
+}
+void printParseTree(State* root,Words words) {
+    Printer printer;
+    printer.print("\nparse tree print");
+    _printParseTree(root,words);
+    puts("");
 }

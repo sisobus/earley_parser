@@ -86,19 +86,21 @@ int main(int argc,char *argv[]) {
                             nextFound.push_back(curState->constituent);
                             Words nextNext = completeChart[i]->next;
                             nextNext.pop_front();
+                            vector<State*> newChild = completeChart[i]->child;
+                            newChild.push_back(curState);
                             pendingChart.push_back(new State(completeChart[i]->start,curState->end,
                                         completeChart[i]->constituent,nextFound,nextNext,
-                                        completeChart[i]));
+                                        newChild));
                         }
                     }
                 }
-                completeChart.push_back(new State(curState));
+                completeChart.push_back(curState);
             } else if ( isActiveState(curState) ) {
                 /*
                  * process 2
                  *
                  * Take a pending edge e1, [i,j,p1,[c1,...,cn],[u1,...,um]] from PC
-                 * if [u1,...,um] is empty, i.e., the edge e1 is not a complete edge
+                 * if [u1,...,um] is not empty, i.e., the edge e1 is not a complete edge
                  * check if there is any edges of the form, [j,_,u1,_,_] in either chart
                  *
                  * if there is (i.e., the constituent u1 had aleady been or to be tried)
@@ -120,9 +122,11 @@ int main(int argc,char *argv[]) {
                             nextFound.push_back(curState->next[0]);
                             Words nextNext = curState->next;
                             nextNext.pop_front();
+                            vector<State*> newChild = curState->child;
+                            newChild.push_back(completeChart[i]);
                             pendingChart.push_back(new State(curState->start,completeChart[i]->end,
                                         curState->constituent,nextFound,nextNext,
-                                        completeChart[i]));
+                                        newChild));
                         }
                     }
                 }
@@ -135,9 +139,11 @@ int main(int argc,char *argv[]) {
                             nextFound.push_back(curState->next[0]);
                             Words nextNext = curState->next;
                             nextNext.pop_front();
+                            vector<State*> newChild = curState->child;
+                            newChild.push_back(pendingChart[i]);
                             pendingChart.push_back(new State(curState->start,pendingChart[i]->end,
                                         curState->constituent,nextFound,nextNext,
-                                        pendingChart[i]));
+                                        newChild));
                         }
                     }
                 }
@@ -151,13 +157,13 @@ int main(int argc,char *argv[]) {
                  *      put e1 as an active edge.
                  */
                 if ( foundSuccess ) {
-                    completeChart.push_back(new State(curState));
+                    completeChart.push_back(curState);
                 } else if ( !foundSuccess ) {
                     rhs = grammer.findRhsUsingLhs(curState->next[0]);
                     for ( int i = 0 ; i < (int)rhs.size() ; i++ ) 
                         pendingChart.push_back(new State(curState->end,curState->end,
-                                    curState->next[0],Words(),rhs[i],curState));
-                    completeChart.push_back(new State(curState));
+                                    curState->next[0],Words(),rhs[i],vector<State*>()));
+                    completeChart.push_back(curState);
                 }
             }
         }
@@ -168,7 +174,7 @@ int main(int argc,char *argv[]) {
             if ( isCompleteState(completeChart[i]) ) {
                 if ( completeChart[i]->start == 0 && completeChart[i]->end == (int)curWords.size() 
                         && completeChart[i]->constituent == "S" ) {
-                    completeChart[i]->printState(curWords);
+                    printParseTree(completeChart[i],curWords);
                 }
             }
         }
