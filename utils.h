@@ -14,10 +14,12 @@ using namespace std;
 
 #define     DEFAULT_GRAMMER_FILENAME    "grammer.txt"
 #define     DEFAULT_STRING_FILENAME     "input.txt"
+#define     DEFAULT_OUTPUT_FILENAME     "output.txt"
 #define     PARAMETER_GRAMMER_FILENAME  "-g"
 #define     PARAMETER_STRING_FILENAME   "-f"
+#define     PARAMETER_OUTPUT_FILENAME   "-o"
 #define     PARAMETER_HELP              "-h"
-#define     MESSAGE_HELP                "help> ./run -g grammer_filename(default: grammer.txt) -f input_string_filename(default: input.txt) "
+#define     MESSAGE_HELP                "help> ./run -g grammer_filename(default: grammer.txt) -f input_string_filename(default: input.txt) -o output_filename(default: output.txt)"
 
 typedef unsigned int uint;
 typedef pair<string,deque<string> > svs;
@@ -64,9 +66,11 @@ struct Printer {
 struct Option {
     string  grammerFilename;
     string  inputFilename;
+    string  outputFilename;
     Option():
         grammerFilename         (DEFAULT_GRAMMER_FILENAME),
-        inputFilename    (DEFAULT_STRING_FILENAME) {}
+        inputFilename           (DEFAULT_STRING_FILENAME),
+        outputFilename          (DEFAULT_OUTPUT_FILENAME){}
     void getOption(int argc,char *argv[]) {
         Printer printer;
         if ( argc == 1 ) {
@@ -83,6 +87,12 @@ struct Option {
                 char buf[64]={};
                 sscanf(argv[i+1],"%s",buf);
                 this->inputFilename = string(buf);
+                i++;
+            }
+            if ( string(argv[i]) == PARAMETER_OUTPUT_FILENAME ) {
+                char buf[64]={};
+                sscanf(argv[i+1],"%s",buf);
+                this->outputFilename = string(buf);
                 i++;
             }
             if ( string(argv[i]) == PARAMETER_HELP ) {
@@ -200,21 +210,21 @@ struct State {
         start (_start), end (_end), constituent (_constituent), found (_found), next (_next), child (vector<State*>()){}
     State(int _start,int _end,string _constituent,Words _found,Words _next,vector<State *> _child):
         start (_start), end (_end), constituent (_constituent), found (_found), next (_next), child (_child){}
-    void printState(Words words) {
+    void printState(FILE* fp,Words words) {
         for ( int i = 0 ; i < (int)words.size() ; i++ ) {
-            if ( i == end ) printf("+ ");
-            printf("%s ",words[i].c_str());
+            if ( i == end ) fprintf(fp,"+ ");
+            fprintf(fp,"%s ",words[i].c_str());
         }
-        printf("%s\n",end==(int)words.size()?"+":"");
-        printf("[");
-        printf("%d, %d, [%s], [",start,end,constituent.c_str());
+        fprintf(fp,"%s\n",end==(int)words.size()?"+":"");
+        fprintf(fp,"[");
+        fprintf(fp,"%d, %d, [%s], [",start,end,constituent.c_str());
         for ( int i = 0 ; i < (int)found.size() ; i++ ) 
-            printf("%s%s",i==0?"":" ",found[i].c_str());
-        printf("], [");
+            fprintf(fp,"%s%s",i==0?"":" ",found[i].c_str());
+        fprintf(fp,"], [");
         for ( int i = 0 ; i < (int)next.size() ; i++ ) 
-            printf("%s%s",i==0?"":" ",next[i].c_str());
-        printf("] ");
-        printf("]\n");
+            fprintf(fp,"%s%s",i==0?"":" ",next[i].c_str());
+        fprintf(fp,"] ");
+        fprintf(fp,"]\n");
     }
 };
 bool isCompleteState(State* state) {
@@ -223,28 +233,27 @@ bool isCompleteState(State* state) {
 bool isActiveState(State* state) {
     return !isCompleteState(state);
 }
-void printPendingChart(deque<State*>& pendingChart,Words words) {
+void printPendingChart(FILE* fp,deque<State*>& pendingChart,Words words) {
     for ( int i = 0 ; i < (int)pendingChart.size() ; i++ ) {
-        pendingChart[i]->printState(words);
+        pendingChart[i]->printState(fp,words);
     }
 }
-void printCompleteChart(vector<State*>& completeChart,Words words) {
+void printCompleteChart(FILE* fp,vector<State*>& completeChart,Words words) {
     for ( int i = 0 ; i < (int)completeChart.size() ; i++ ) {
-        completeChart[i]->printState(words);
+        completeChart[i]->printState(fp,words);
     }
 }
-void _printParseTree(State* curNode,Words& words) {
-    printf("(%s %s",curNode->constituent.c_str(),curNode->child.empty()?curNode->found[0].c_str():"");
+void _printParseTree(FILE* fp,State* curNode,Words& words) {
+    fprintf(fp,"(%s %s",curNode->constituent.c_str(),curNode->child.empty()?curNode->found[0].c_str():"");
     for ( int i = 0 ; i < (int)curNode->child.size() ; i++ ) {
-        _printParseTree(curNode->child[i],words);
+        _printParseTree(fp,curNode->child[i],words);
     }
-    printf(")");
+    fprintf(fp,")");
 }
-void printParseTree(State* root,Words words) {
-    Printer printer;
-    printer.print("\nparse tree print");
-    _printParseTree(root,words);
-    puts("");
+void printParseTree(FILE* fp,State* root,Words words) {
+    fprintf(fp,"\nparse tree\n");
+    _printParseTree(fp,root,words);
+    fprintf(fp,"\n\n");
 }
 void process1(State* curState,State* activeState,deque<State*>& pendingChart) {
     Words nextFound = activeState->found;

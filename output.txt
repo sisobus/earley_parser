@@ -1,0 +1,486 @@
++ the man saw the boy in the park with a telescope 
+[0, 0, [S], [], [NP VP NP] ]
++ the man saw the boy in the park with a telescope 
+[0, 0, [S], [], [NP VP] ]
++ the man saw the boy in the park with a telescope 
+[0, 0, [NP], [], [DT NP] ]
++ the man saw the boy in the park with a telescope 
+[0, 0, [NP], [], [n] ]
++ the man saw the boy in the park with a telescope 
+[0, 0, [DT], [], [det] ]
++ the man saw the boy in the park with a telescope 
+[0, 0, [n], [], [man] ]
++ the man saw the boy in the park with a telescope 
+[0, 0, [n], [], [boy] ]
++ the man saw the boy in the park with a telescope 
+[0, 0, [n], [], [telescope] ]
++ the man saw the boy in the park with a telescope 
+[0, 0, [n], [], [saw] ]
++ the man saw the boy in the park with a telescope 
+[0, 0, [n], [], [time] ]
++ the man saw the boy in the park with a telescope 
+[0, 0, [n], [], [flies] ]
++ the man saw the boy in the park with a telescope 
+[0, 0, [n], [], [arrow] ]
++ the man saw the boy in the park with a telescope 
+[0, 0, [n], [], [park] ]
+the + man saw the boy in the park with a telescope 
+[0, 1, [DT], [det], [] ]
+the + man saw the boy in the park with a telescope 
+[0, 1, [NP], [DT], [NP] ]
+the + man saw the boy in the park with a telescope 
+[1, 1, [NP], [], [DT NP] ]
+the + man saw the boy in the park with a telescope 
+[1, 1, [NP], [], [n] ]
+the + man saw the boy in the park with a telescope 
+[1, 1, [DT], [], [det] ]
+the man + saw the boy in the park with a telescope 
+[1, 2, [NP], [n], [] ]
+the + man saw the boy in the park with a telescope 
+[1, 1, [det], [], [an] ]
+the + man saw the boy in the park with a telescope 
+[1, 1, [det], [], [a] ]
+the + man saw the boy in the park with a telescope 
+[1, 1, [det], [], [the] ]
+the man + saw the boy in the park with a telescope 
+[0, 2, [NP], [DT NP], [] ]
+the man + saw the boy in the park with a telescope 
+[0, 2, [S], [NP], [VP NP] ]
+the man + saw the boy in the park with a telescope 
+[0, 2, [S], [NP], [VP] ]
+the man + saw the boy in the park with a telescope 
+[2, 2, [VP], [], [VP NP PP] ]
+the man + saw the boy in the park with a telescope 
+[2, 2, [VP], [], [VP PP] ]
+the man + saw the boy in the park with a telescope 
+[2, 2, [VP], [], [v] ]
+the man saw + the boy in the park with a telescope 
+[2, 3, [VP], [v], [] ]
+the man saw + the boy in the park with a telescope 
+[0, 3, [S], [NP VP], [NP] ]
+the man saw + the boy in the park with a telescope 
+[0, 3, [S], [NP VP], [] ]
+the man saw + the boy in the park with a telescope 
+[2, 3, [VP], [VP], [NP PP] ]
+the man saw + the boy in the park with a telescope 
+[2, 3, [VP], [VP], [PP] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [NP], [], [DT NP] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [NP], [], [n] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [PP], [], [P NP] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [DT], [], [det] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [n], [], [man] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [n], [], [boy] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [n], [], [telescope] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [n], [], [saw] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [n], [], [time] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [n], [], [flies] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [n], [], [arrow] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [n], [], [park] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [P], [], [p] ]
+the man saw the + boy in the park with a telescope 
+[3, 4, [DT], [det], [] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [p], [], [like] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [p], [], [with] ]
+the man saw + the boy in the park with a telescope 
+[3, 3, [p], [], [in] ]
+the man saw the + boy in the park with a telescope 
+[3, 4, [NP], [DT], [NP] ]
+the man saw the + boy in the park with a telescope 
+[4, 4, [NP], [], [DT NP] ]
+the man saw the + boy in the park with a telescope 
+[4, 4, [NP], [], [n] ]
+the man saw the + boy in the park with a telescope 
+[4, 4, [DT], [], [det] ]
+the man saw the boy + in the park with a telescope 
+[4, 5, [NP], [n], [] ]
+the man saw the + boy in the park with a telescope 
+[4, 4, [det], [], [an] ]
+the man saw the + boy in the park with a telescope 
+[4, 4, [det], [], [a] ]
+the man saw the + boy in the park with a telescope 
+[4, 4, [det], [], [the] ]
+the man saw the boy + in the park with a telescope 
+[3, 5, [NP], [DT NP], [] ]
+the man saw the boy + in the park with a telescope 
+[0, 5, [S], [NP VP NP], [] ]
+the man saw the boy + in the park with a telescope 
+[2, 5, [VP], [VP NP], [PP] ]
+the man saw the boy + in the park with a telescope 
+[5, 5, [PP], [], [P NP] ]
+the man saw the boy + in the park with a telescope 
+[5, 5, [P], [], [p] ]
+the man saw the boy in + the park with a telescope 
+[5, 6, [P], [p], [] ]
+the man saw the boy in + the park with a telescope 
+[5, 6, [PP], [P], [NP] ]
+the man saw the boy in + the park with a telescope 
+[6, 6, [NP], [], [DT NP] ]
+the man saw the boy in + the park with a telescope 
+[6, 6, [NP], [], [n] ]
+the man saw the boy in + the park with a telescope 
+[6, 6, [DT], [], [det] ]
+the man saw the boy in + the park with a telescope 
+[6, 6, [n], [], [man] ]
+the man saw the boy in + the park with a telescope 
+[6, 6, [n], [], [boy] ]
+the man saw the boy in + the park with a telescope 
+[6, 6, [n], [], [telescope] ]
+the man saw the boy in + the park with a telescope 
+[6, 6, [n], [], [saw] ]
+the man saw the boy in + the park with a telescope 
+[6, 6, [n], [], [time] ]
+the man saw the boy in + the park with a telescope 
+[6, 6, [n], [], [flies] ]
+the man saw the boy in + the park with a telescope 
+[6, 6, [n], [], [arrow] ]
+the man saw the boy in + the park with a telescope 
+[6, 6, [n], [], [park] ]
+the man saw the boy in the + park with a telescope 
+[6, 7, [DT], [det], [] ]
+the man saw the boy in the + park with a telescope 
+[6, 7, [NP], [DT], [NP] ]
+the man saw the boy in the + park with a telescope 
+[7, 7, [NP], [], [DT NP] ]
+the man saw the boy in the + park with a telescope 
+[7, 7, [NP], [], [n] ]
+the man saw the boy in the + park with a telescope 
+[7, 7, [DT], [], [det] ]
+the man saw the boy in the park + with a telescope 
+[7, 8, [NP], [n], [] ]
+the man saw the boy in the + park with a telescope 
+[7, 7, [det], [], [an] ]
+the man saw the boy in the + park with a telescope 
+[7, 7, [det], [], [a] ]
+the man saw the boy in the + park with a telescope 
+[7, 7, [det], [], [the] ]
+the man saw the boy in the park + with a telescope 
+[6, 8, [NP], [DT NP], [] ]
+the man saw the boy in the park + with a telescope 
+[5, 8, [PP], [P NP], [] ]
+the man saw the boy in the park + with a telescope 
+[2, 8, [VP], [VP NP PP], [] ]
+the man saw the boy in the park + with a telescope 
+[0, 8, [S], [NP VP], [NP] ]
+the man saw the boy in the park + with a telescope 
+[0, 8, [S], [NP VP], [] ]
+the man saw the boy in the park + with a telescope 
+[2, 8, [VP], [VP], [NP PP] ]
+the man saw the boy in the park + with a telescope 
+[2, 8, [VP], [VP], [PP] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [NP], [], [DT NP] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [NP], [], [n] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [PP], [], [P NP] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [DT], [], [det] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [n], [], [man] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [n], [], [boy] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [n], [], [telescope] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [n], [], [saw] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [n], [], [time] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [n], [], [flies] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [n], [], [arrow] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [n], [], [park] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [P], [], [p] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [det], [], [an] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [det], [], [a] ]
+the man saw the boy in the park + with a telescope 
+[8, 8, [det], [], [the] ]
+the man saw the boy in the park with + a telescope 
+[8, 9, [P], [p], [] ]
+the man saw the boy in the park with + a telescope 
+[8, 9, [PP], [P], [NP] ]
+the man saw the boy in the park with + a telescope 
+[9, 9, [NP], [], [DT NP] ]
+the man saw the boy in the park with + a telescope 
+[9, 9, [NP], [], [n] ]
+the man saw the boy in the park with + a telescope 
+[9, 9, [DT], [], [det] ]
+the man saw the boy in the park with + a telescope 
+[9, 9, [n], [], [man] ]
+the man saw the boy in the park with + a telescope 
+[9, 9, [n], [], [boy] ]
+the man saw the boy in the park with + a telescope 
+[9, 9, [n], [], [telescope] ]
+the man saw the boy in the park with + a telescope 
+[9, 9, [n], [], [saw] ]
+the man saw the boy in the park with + a telescope 
+[9, 9, [n], [], [time] ]
+the man saw the boy in the park with + a telescope 
+[9, 9, [n], [], [flies] ]
+the man saw the boy in the park with + a telescope 
+[9, 9, [n], [], [arrow] ]
+the man saw the boy in the park with + a telescope 
+[9, 9, [n], [], [park] ]
+the man saw the boy in the park with a + telescope 
+[9, 10, [DT], [det], [] ]
+the man saw the boy in the park with a + telescope 
+[9, 10, [NP], [DT], [NP] ]
+the man saw the boy in the park with a + telescope 
+[10, 10, [NP], [], [DT NP] ]
+the man saw the boy in the park with a + telescope 
+[10, 10, [NP], [], [n] ]
+the man saw the boy in the park with a + telescope 
+[10, 10, [DT], [], [det] ]
+the man saw the boy in the park with a telescope +
+[10, 11, [NP], [n], [] ]
+the man saw the boy in the park with a + telescope 
+[10, 10, [det], [], [an] ]
+the man saw the boy in the park with a + telescope 
+[10, 10, [det], [], [a] ]
+the man saw the boy in the park with a + telescope 
+[10, 10, [det], [], [the] ]
+the man saw the boy in the park with a telescope +
+[9, 11, [NP], [DT NP], [] ]
+the man saw the boy in the park with a telescope +
+[8, 11, [PP], [P NP], [] ]
+the man saw the boy in the park with a telescope +
+[2, 11, [VP], [VP PP], [] ]
+the man saw the boy in the park with a telescope +
+[0, 11, [S], [NP VP], [NP] ]
+the man saw the boy in the park with a telescope +
+[0, 11, [S], [NP VP], [] ]
+the man saw the boy in the park with a telescope +
+[2, 11, [VP], [VP], [NP PP] ]
+the man saw the boy in the park with a telescope +
+[2, 11, [VP], [VP], [PP] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [NP], [], [DT NP] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [NP], [], [n] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [PP], [], [P NP] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [DT], [], [det] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [n], [], [man] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [n], [], [boy] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [n], [], [telescope] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [n], [], [saw] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [n], [], [time] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [n], [], [flies] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [n], [], [arrow] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [n], [], [park] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [P], [], [p] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [det], [], [an] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [det], [], [a] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [det], [], [the] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [p], [], [like] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [p], [], [with] ]
+the man saw the boy in the park with a telescope +
+[11, 11, [p], [], [in] ]
+
+parse tree
+(S (NP (DT (det the))(NP (n man)))(VP (VP (VP (v saw))(NP (DT (det the))(NP (n boy)))(PP (P (p in))(NP (DT (det the))(NP (n park)))))(PP (P (p with))(NP (DT (det a))(NP (n telescope))))))
+
++ time flies like an arrow 
+[0, 0, [S], [], [NP VP NP] ]
++ time flies like an arrow 
+[0, 0, [S], [], [NP VP] ]
++ time flies like an arrow 
+[0, 0, [NP], [], [DT NP] ]
++ time flies like an arrow 
+[0, 0, [NP], [], [n] ]
++ time flies like an arrow 
+[0, 0, [DT], [], [det] ]
+time + flies like an arrow 
+[0, 1, [NP], [n], [] ]
++ time flies like an arrow 
+[0, 0, [det], [], [an] ]
++ time flies like an arrow 
+[0, 0, [det], [], [a] ]
++ time flies like an arrow 
+[0, 0, [det], [], [the] ]
+time + flies like an arrow 
+[0, 1, [S], [NP], [VP NP] ]
+time + flies like an arrow 
+[0, 1, [S], [NP], [VP] ]
+time + flies like an arrow 
+[1, 1, [VP], [], [VP NP PP] ]
+time + flies like an arrow 
+[1, 1, [VP], [], [VP PP] ]
+time + flies like an arrow 
+[1, 1, [VP], [], [v] ]
+time flies + like an arrow 
+[1, 2, [VP], [v], [] ]
+time flies + like an arrow 
+[0, 2, [S], [NP VP], [NP] ]
+time flies + like an arrow 
+[0, 2, [S], [NP VP], [] ]
+time flies + like an arrow 
+[1, 2, [VP], [VP], [NP PP] ]
+time flies + like an arrow 
+[1, 2, [VP], [VP], [PP] ]
+time flies + like an arrow 
+[2, 2, [NP], [], [DT NP] ]
+time flies + like an arrow 
+[2, 2, [NP], [], [n] ]
+time flies + like an arrow 
+[2, 2, [PP], [], [P NP] ]
+time flies + like an arrow 
+[2, 2, [DT], [], [det] ]
+time flies + like an arrow 
+[2, 2, [n], [], [man] ]
+time flies + like an arrow 
+[2, 2, [n], [], [boy] ]
+time flies + like an arrow 
+[2, 2, [n], [], [telescope] ]
+time flies + like an arrow 
+[2, 2, [n], [], [saw] ]
+time flies + like an arrow 
+[2, 2, [n], [], [time] ]
+time flies + like an arrow 
+[2, 2, [n], [], [flies] ]
+time flies + like an arrow 
+[2, 2, [n], [], [arrow] ]
+time flies + like an arrow 
+[2, 2, [n], [], [park] ]
+time flies + like an arrow 
+[2, 2, [P], [], [p] ]
+time flies + like an arrow 
+[2, 2, [det], [], [an] ]
+time flies + like an arrow 
+[2, 2, [det], [], [a] ]
+time flies + like an arrow 
+[2, 2, [det], [], [the] ]
+time flies like + an arrow 
+[2, 3, [P], [p], [] ]
+time flies like + an arrow 
+[2, 3, [PP], [P], [NP] ]
+time flies like + an arrow 
+[3, 3, [NP], [], [DT NP] ]
+time flies like + an arrow 
+[3, 3, [NP], [], [n] ]
+time flies like + an arrow 
+[3, 3, [DT], [], [det] ]
+time flies like + an arrow 
+[3, 3, [n], [], [man] ]
+time flies like + an arrow 
+[3, 3, [n], [], [boy] ]
+time flies like + an arrow 
+[3, 3, [n], [], [telescope] ]
+time flies like + an arrow 
+[3, 3, [n], [], [saw] ]
+time flies like + an arrow 
+[3, 3, [n], [], [time] ]
+time flies like + an arrow 
+[3, 3, [n], [], [flies] ]
+time flies like + an arrow 
+[3, 3, [n], [], [arrow] ]
+time flies like + an arrow 
+[3, 3, [n], [], [park] ]
+time flies like an + arrow 
+[3, 4, [DT], [det], [] ]
+time flies like an + arrow 
+[3, 4, [NP], [DT], [NP] ]
+time flies like an + arrow 
+[4, 4, [NP], [], [DT NP] ]
+time flies like an + arrow 
+[4, 4, [NP], [], [n] ]
+time flies like an + arrow 
+[4, 4, [DT], [], [det] ]
+time flies like an arrow +
+[4, 5, [NP], [n], [] ]
+time flies like an + arrow 
+[4, 4, [det], [], [an] ]
+time flies like an + arrow 
+[4, 4, [det], [], [a] ]
+time flies like an + arrow 
+[4, 4, [det], [], [the] ]
+time flies like an arrow +
+[3, 5, [NP], [DT NP], [] ]
+time flies like an arrow +
+[2, 5, [PP], [P NP], [] ]
+time flies like an arrow +
+[1, 5, [VP], [VP PP], [] ]
+time flies like an arrow +
+[0, 5, [S], [NP VP], [NP] ]
+time flies like an arrow +
+[0, 5, [S], [NP VP], [] ]
+time flies like an arrow +
+[1, 5, [VP], [VP], [NP PP] ]
+time flies like an arrow +
+[1, 5, [VP], [VP], [PP] ]
+time flies like an arrow +
+[5, 5, [NP], [], [DT NP] ]
+time flies like an arrow +
+[5, 5, [NP], [], [n] ]
+time flies like an arrow +
+[5, 5, [PP], [], [P NP] ]
+time flies like an arrow +
+[5, 5, [DT], [], [det] ]
+time flies like an arrow +
+[5, 5, [n], [], [man] ]
+time flies like an arrow +
+[5, 5, [n], [], [boy] ]
+time flies like an arrow +
+[5, 5, [n], [], [telescope] ]
+time flies like an arrow +
+[5, 5, [n], [], [saw] ]
+time flies like an arrow +
+[5, 5, [n], [], [time] ]
+time flies like an arrow +
+[5, 5, [n], [], [flies] ]
+time flies like an arrow +
+[5, 5, [n], [], [arrow] ]
+time flies like an arrow +
+[5, 5, [n], [], [park] ]
+time flies like an arrow +
+[5, 5, [P], [], [p] ]
+time flies like an arrow +
+[5, 5, [det], [], [an] ]
+time flies like an arrow +
+[5, 5, [det], [], [a] ]
+time flies like an arrow +
+[5, 5, [det], [], [the] ]
+time flies like an arrow +
+[5, 5, [p], [], [like] ]
+time flies like an arrow +
+[5, 5, [p], [], [with] ]
+time flies like an arrow +
+[5, 5, [p], [], [in] ]
+
+parse tree
+(S (NP (n time))(VP (VP (v flies))(PP (P (p like))(NP (DT (det an))(NP (n arrow))))))
+

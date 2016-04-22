@@ -8,6 +8,7 @@ int main(int argc,char *argv[]) {
     option.getOption(argc,argv);
     grammer     = initGrammer(option.grammerFilename);
     sentences   = initInputString(option.inputFilename);
+    FILE *fp    = fopen(option.outputFilename.c_str(),"w");
 
     /*
      * psi = input parsed string index
@@ -44,7 +45,7 @@ int main(int argc,char *argv[]) {
          */
         while ( !pendingChart.empty() ) {
             State *curState = pendingChart.front();pendingChart.pop_front();
-            curState->printState(curWords);
+            curState->printState(fp,curWords);
 
             if ( isCompleteState(curState) ) {
                 /*
@@ -132,10 +133,11 @@ int main(int argc,char *argv[]) {
             if ( isCompleteState(completeChart[i]) ) {
                 if ( completeChart[i]->start == 0 && completeChart[i]->end == (int)curWords.size() 
                         && completeChart[i]->constituent == "S" ) {
-                    printParseTree(completeChart[i],curWords);
+                    printParseTree(fp,completeChart[i],curWords);
                 }
             }
         }
     }
+    fclose(fp);
     return 0;
 }
