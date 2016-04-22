@@ -82,15 +82,7 @@ int main(int argc,char *argv[]) {
                     if ( isActiveState(completeChart[i]) ) {
                         if ( completeChart[i]->end == curState->start &&
                                 completeChart[i]->next[0] == curState->constituent ) {
-                            Words nextFound = completeChart[i]->found;
-                            nextFound.push_back(curState->constituent);
-                            Words nextNext = completeChart[i]->next;
-                            nextNext.pop_front();
-                            vector<State*> newChild = completeChart[i]->child;
-                            newChild.push_back(curState);
-                            pendingChart.push_back(new State(completeChart[i]->start,curState->end,
-                                        completeChart[i]->constituent,nextFound,nextNext,
-                                        newChild));
+                            process1(curState,completeChart[i],pendingChart);
                         }
                     }
                 }
@@ -118,15 +110,7 @@ int main(int argc,char *argv[]) {
                             completeChart[i]->constituent == curState->next[0] ) {
                         foundSuccess = true;
                         if ( isCompleteState(completeChart[i]) ) {
-                            Words nextFound = curState->found;
-                            nextFound.push_back(curState->next[0]);
-                            Words nextNext = curState->next;
-                            nextNext.pop_front();
-                            vector<State*> newChild = curState->child;
-                            newChild.push_back(completeChart[i]);
-                            pendingChart.push_back(new State(curState->start,completeChart[i]->end,
-                                        curState->constituent,nextFound,nextNext,
-                                        newChild));
+                            process2(curState,completeChart[i],pendingChart);
                         }
                     }
                 }
@@ -135,15 +119,7 @@ int main(int argc,char *argv[]) {
                             pendingChart[i]->constituent == curState->next[0] ) {
                         foundSuccess = true;
                         if ( isCompleteState(pendingChart[i]) ) {
-                            Words nextFound = curState->found;
-                            nextFound.push_back(curState->next[0]);
-                            Words nextNext = curState->next;
-                            nextNext.pop_front();
-                            vector<State*> newChild = curState->child;
-                            newChild.push_back(pendingChart[i]);
-                            pendingChart.push_back(new State(curState->start,pendingChart[i]->end,
-                                        curState->constituent,nextFound,nextNext,
-                                        newChild));
+                            process2(curState,pendingChart[i],pendingChart);
                         }
                     }
                 }

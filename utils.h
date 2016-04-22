@@ -246,3 +246,23 @@ void printParseTree(State* root,Words words) {
     _printParseTree(root,words);
     puts("");
 }
+void process1(State* curState,State* activeState,deque<State*>& pendingChart) {
+    Words nextFound = activeState->found;
+    nextFound.push_back(curState->constituent);
+    Words nextNext = activeState->next;
+    nextNext.pop_front();
+    vector<State*> nextChild = activeState->child;
+    nextChild.push_back(curState);
+    pendingChart.push_back(new State(activeState->start,curState->end,
+                activeState->constituent,nextFound,nextNext,nextChild));
+}
+void process2(State* curState,State* completeState,deque<State*>& pendingChart) {
+    Words nextFound = curState->found;
+    nextFound.push_back(curState->next[0]);
+    Words nextNext = curState->next;
+    nextNext.pop_front();
+    vector<State*> nextChild = curState->child;
+    nextChild.push_back(completeState);
+    pendingChart.push_back(new State(curState->start,completeState->end,
+                curState->constituent,nextFound,nextNext,nextChild));
+}
